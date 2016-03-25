@@ -34,7 +34,7 @@ boolean wifiConnected = false;
 
 WifiData espSerial;
 ESP esp(&espSerial);
-REST rest(&esp);
+//REST rest(&esp);
 
 void wifiCb(void* response)
 {
