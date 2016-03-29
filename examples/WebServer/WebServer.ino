@@ -46,5 +46,5 @@ void WebServer(WifiData client) {
             
           client.print("</body>"); 
           client.println("</html>"); 
-          client.print(END); // very important to end the communication !!!          
+          client.print(DELIMITER); // very important to end the communication !!!          
 }
