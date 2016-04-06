@@ -80,7 +80,6 @@ void digitalCommand(WifiData client) {
   }
 
   // Send feedback to client
-  client.println("Status: 200 OK\n");
   client.print(F("Pin D"));
   client.print(pin);
   client.print(F(" set to "));
@@ -103,7 +102,6 @@ void analogCommand(WifiData client) {
     analogWrite(pin, value);
 
     // Send feedback to client
-    client.println("Status: 200 OK\n");
     client.print(F("Pin D"));
     client.print(pin);
     client.print(F(" set to analog "));
@@ -116,7 +114,6 @@ void analogCommand(WifiData client) {
     value = analogRead(pin);
 
     // Send feedback to client
-    client.println("Status: 200 OK\n");
     client.print(F("Pin A"));
     client.print(pin);
     client.print(F(" reads analog "));
@@ -144,7 +141,6 @@ void modeCommand(WifiData client) {
   if (mode == "input") {
     pinMode(pin, INPUT);
     // Send feedback to client
-    client.println("Status: 200 OK\n");
     client.print(F("Pin D"));
     client.print(pin);
     client.println(F(" configured as INPUT!"));
@@ -155,7 +151,6 @@ void modeCommand(WifiData client) {
   if (mode == "output") {
     pinMode(pin, OUTPUT);
     // Send feedback to client
-    client.println("Status: 200 OK\n");
     client.print(F("Pin D"));
     client.print(pin);
     client.println(F(" configured as OUTPUT!"));
