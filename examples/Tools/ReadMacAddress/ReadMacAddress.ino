@@ -8,6 +8,7 @@ This sketch Read the MAC Address from the ESP8266EX and print the code in the co
 #define BAUD 9600
 WifiData EspSerial;
 String mac = "";         // a string to hold incoming data
+String ssid="";
 boolean flag=false;
 
 char command1[]={0xc0,0x0,0xa,0x4,0x0,0x0,0x0,0x0,0x0,0x50,0x0,0xf0,0x3f,0xc0};
@@ -70,12 +71,17 @@ void read_mac(){
         
     if(c==9){
       mac=cleanString(inChar) + mac;
+      ssid=mac;
     }
     if(c==18){
-      mac=cleanString(inChar) + ":" +  mac;
+      String tmp = cleanString(inChar);
+      mac=tmp + ":" +  mac;
+      ssid=tmp + ssid;
     }
     if(c==19){
-      mac=cleanString(inChar) + ":" + mac;
+      String tmp = cleanString(inChar);
+      mac=tmp + ":" + mac;
+      ssid=tmp + ssid;
     }    
   }  
   
@@ -83,8 +89,11 @@ void read_mac(){
     Serial.println("Please, push the  ESP B/L button on the board and plug the USB cable before run the sketch");
   else{
     Serial.println("\nMAC:");
-    mac="5c:cf:7f:" + mac;
-    Serial.println(mac);
+    String mac_complete="5c:cf:7f:" + mac;
+    Serial.println(mac_complete);
+    
+    Serial.println("\nSSID:");
+    Serial.println("Arduino-Uno-WiFi-" + ssid);
     
     Serial.println("You need to replug your board to work with the Wi-Fi");
   }
