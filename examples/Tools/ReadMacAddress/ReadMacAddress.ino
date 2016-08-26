@@ -59,7 +59,7 @@ void read_mac(){
   if(espresponse.length()==0)
     Serial.println("Please, push the  ESP B/L button on the board and plug the USB cable before run the sketch");
   else{
-    //In accordint to the SLIP protocol, the the parsing of the ESP8266 response
+    //In accordintg to the SLIP protocol, here the parsing of the ESP8266 response
     int pos1= espresponse.lastIndexOf("c01a20");
     mac=String(espresponse.charAt(pos1+8))+String(espresponse.charAt(pos1+9))+":"+String(espresponse.charAt(pos1+6))+String(espresponse.charAt(pos1+7));
     ssid=String(espresponse.charAt(pos1+8))+String(espresponse.charAt(pos1+9))+String(espresponse.charAt(pos1+6))+String(espresponse.charAt(pos1+7));
