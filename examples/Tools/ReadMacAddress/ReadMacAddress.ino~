@@ -53,13 +53,11 @@ void read_mac(){
     int inChar = (int)EspSerial.read();
     espresponse+=String(inChar, HEX);  
   }  
-  //Debug
-  //Serial.println("");
-  //Serial.println(espresponse);
+  
   if(espresponse.length()==0)
     Serial.println("Please, push the  ESP B/L button on the board and plug the USB cable before run the sketch");
   else{
-    //In accordint to the SLIP protocol, the the parsing of the ESP8266 response
+    //In accordintg to the SLIP protocol, this is the parse of the ESP8266 response
     int pos1= espresponse.lastIndexOf("c01a20");
     mac=String(espresponse.charAt(pos1+8))+String(espresponse.charAt(pos1+9))+":"+String(espresponse.charAt(pos1+6))+String(espresponse.charAt(pos1+7));
     ssid=String(espresponse.charAt(pos1+8))+String(espresponse.charAt(pos1+9))+String(espresponse.charAt(pos1+6))+String(espresponse.charAt(pos1+7));
@@ -83,14 +81,14 @@ void read_mac(){
         }
       }      
     }else{
-      if(espresponse.length()==31){
-         last_char_mac=String(espresponse.charAt(9))+String(espresponse.charAt(10));
-       }else{
-         last_char_mac=String(espresponse.charAt(10))+String(espresponse.charAt(11));                                 
-       }            
+      if(espresponse.length()==32)
+        last_char_mac=String(espresponse.charAt(10))+String(espresponse.charAt(11));
+      else
+        last_char_mac=String(espresponse.charAt(9))+String(espresponse.charAt(10));      
     }
     mac+=":" + last_char_mac;
     ssid+=last_char_mac;
+
     
     Serial.println("\nMAC:");
     String mac_complete="5c:cf:7f:" + mac;
