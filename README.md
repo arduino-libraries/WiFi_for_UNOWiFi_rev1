@@ -1,3 +1,5 @@
+> **Note:** this library is deprecated and no longer maintained.
+
 # Arduino WiFi Library
 
 You can find all examples on File -> Examples -> Arduino WiFi
